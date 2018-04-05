@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -29,7 +28,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="106"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bpd-Dh-Xcq" id="flv-Eo-XTW">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="105.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="106"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LdD-ds-CyX">
@@ -277,7 +276,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="8Nf-TW-Xfa">
+                            <searchBar contentMode="redraw" placeholder="Digite seu ponto de interesse" translatesAutoresizingMaskIntoConstraints="NO" id="8Nf-TW-Xfa">
                                 <rect key="frame" x="0.0" y="20" width="320" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="n8b-UB-oyX"/>
@@ -309,6 +308,87 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BVf-pl-Z7T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1715.625" y="-120.4225352112676"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="4HF-6l-hs3">
+            <objects>
+                <viewController storyboardIdentifier="WebViewController" id="2K6-Qc-9NT" customClass="WebViewController" customModule="MoviesLib" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ad4-3J-r80">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNO-iP-FSq">
+                                <rect key="frame" x="10" y="30" width="48" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Ug2-fZ-voe"/>
+                                </constraints>
+                                <state key="normal" title="Fechar"/>
+                                <connections>
+                                    <action selector="fechar:" destination="2K6-Qc-9NT" eventType="touchUpInside" id="kwS-98-QzI"/>
+                                </connections>
+                            </button>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uR1-KH-vdj">
+                                <rect key="frame" x="0.0" y="70" width="320" height="454"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="2K6-Qc-9NT" id="cXb-Hf-86q"/>
+                                </connections>
+                            </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJe-LT-I36">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="EGN-zz-HJZ"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem systemItem="rewind" id="cjg-rl-O5J">
+                                        <connections>
+                                            <action selector="goBack" destination="uR1-KH-vdj" id="dxy-DR-2RE"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="qGm-FO-EKL"/>
+                                    <barButtonItem title="Executar JS" id="QvF-01-j3D">
+                                        <connections>
+                                            <action selector="executarJS:" destination="2K6-Qc-9NT" id="ZM3-YW-D0J"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="IUA-Vk-XZE"/>
+                                    <barButtonItem systemItem="fastForward" id="yYL-If-wEY">
+                                        <connections>
+                                            <action selector="goForward" destination="uR1-KH-vdj" id="PjR-rj-g3S"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fRE-xY-YW4">
+                                <rect key="frame" x="141.5" y="278.5" width="37" height="37"/>
+                                <color key="color" red="1" green="0.79011259777127485" blue="0.1975981407650963" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fRE-xY-YW4" firstAttribute="centerY" secondItem="uR1-KH-vdj" secondAttribute="centerY" id="0Xr-kg-Q64"/>
+                            <constraint firstItem="aJe-LT-I36" firstAttribute="bottom" secondItem="rtU-0L-P5G" secondAttribute="bottom" id="6bE-vw-qKR"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GNO-iP-FSq" secondAttribute="trailing" constant="20" symbolic="YES" id="8rZ-Dd-klx"/>
+                            <constraint firstItem="fRE-xY-YW4" firstAttribute="centerX" secondItem="uR1-KH-vdj" secondAttribute="centerX" id="Jvh-yy-Gf1"/>
+                            <constraint firstItem="uR1-KH-vdj" firstAttribute="trailing" secondItem="rtU-0L-P5G" secondAttribute="trailing" id="LN3-zH-AWt"/>
+                            <constraint firstItem="uR1-KH-vdj" firstAttribute="leading" secondItem="rtU-0L-P5G" secondAttribute="leading" id="OH4-YQ-ToR"/>
+                            <constraint firstItem="aJe-LT-I36" firstAttribute="top" secondItem="uR1-KH-vdj" secondAttribute="bottom" id="Qdw-X4-nyy"/>
+                            <constraint firstItem="GNO-iP-FSq" firstAttribute="top" secondItem="rtU-0L-P5G" secondAttribute="top" constant="10" id="iVc-4r-4MW"/>
+                            <constraint firstItem="uR1-KH-vdj" firstAttribute="top" secondItem="GNO-iP-FSq" secondAttribute="bottom" constant="10" id="iXa-93-BLh"/>
+                            <constraint firstItem="GNO-iP-FSq" firstAttribute="leading" secondItem="rtU-0L-P5G" secondAttribute="leading" constant="10" id="l9W-i4-f2i"/>
+                            <constraint firstItem="aJe-LT-I36" firstAttribute="leading" secondItem="rtU-0L-P5G" secondAttribute="leading" id="mea-0w-1F3"/>
+                            <constraint firstItem="aJe-LT-I36" firstAttribute="trailing" secondItem="rtU-0L-P5G" secondAttribute="trailing" id="uPn-Kr-e4U"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rtU-0L-P5G"/>
+                    </view>
+                    <connections>
+                        <outlet property="indicator" destination="fRE-xY-YW4" id="XsU-VM-YAq"/>
+                        <outlet property="webView" destination="uR1-KH-vdj" id="rUd-Ng-usA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uVp-uC-mTj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1717.5" y="636.97183098591552"/>
         </scene>
     </scenes>
     <resources>

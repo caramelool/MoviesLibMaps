@@ -11,10 +11,12 @@ import MapKit
 
 class TheaterAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
+    var theater: Theater!
     var title: String?
     var subtitle: String?
     
     init(_ theater: Theater) {
+        self.theater = theater
         self.title = theater.name
         self.subtitle = theater.address
         self.coordinate = CLLocationCoordinate2D(
